@@ -9,7 +9,8 @@
 - **Next.js 16** (App Router, TypeScript, Turbopack, Server Actions)
 - **Tailwind CSS v4** (پیکربندی CSS-first، توکن‌های رنگ برند در `globals.css`)
 - **Framer Motion** (انیمیشن fade-in هنگام اسکرول روی تمام بخش‌ها)
-- **Prisma 7 + SQLite** (با درایور آداپتر `@prisma/adapter-better-sqlite3`)
+- **Prisma 7 + SQLite/libSQL** (با درایور آداپتر `@prisma/adapter-libsql`؛ محلی یک
+  فایل ساده است، در پروداکشن به Turso وصل می‌شود)
 - **jose + bcryptjs** (سشن JWT امضاشده + هش پسورد ادمین)
 - **react-markdown** (رندر محتوای مقالات نوشته‌شده در پنل ادمین)
 
@@ -136,6 +137,32 @@ Marcellus یا Playfair Display) تغییر داد.
 به‌جای عکس یک مونوگرام طلایی («ح») نمایش داده می‌شود (نه ایموجی). به‌محض
 اضافه‌کردن فایل با همین نام، در بخش بنیان‌گذار صفحه اصلی و صفحه `/founder`
 به‌طور خودکار جایگزین می‌شود.
+
+## دیپلوی روی Vercel (با دیتابیس Turso)
+
+فایل SQLite محلی روی هاستینگ سرورلس مثل Vercel پایدار نیست، پس برای
+پروداکشن به یک دیتابیس libSQL ابری (Turso) وصل می‌شویم — کد از قبل برای
+هر دو حالت (فایل محلی / Turso) از یک آداپتر یکسان استفاده می‌کند، فقط
+مقدار `DATABASE_URL` فرق می‌کند.
+
+1. یک اکانت رایگان (بدون کارت اعتباری) در [turso.tech](https://turso.tech)
+   بسازید و از داشبورد وب یک دیتابیس جدید ایجاد کنید.
+2. از همان داشبورد، **Database URL** (به‌شکل `libsql://...turso.io`) و یک
+   **Auth Token** بگیرید.
+3. مایگریشن‌ها را روی همان دیتابیس Turso اجرا کنید (موتور migrate خود
+   Prisma فقط فایل SQLite محلی را می‌فهمد، نه پروتکل ریموت Turso را — به
+   همین دلیل یک اسکریپت کوچک این کار را با کلاینت JS انجام می‌دهد):
+   ```bash
+   DATABASE_URL="libsql://..." DATABASE_AUTH_TOKEN="..." npm run db:turso:migrate
+   ```
+4. در [vercel.com/new](https://vercel.com/new) با گیت‌هاب وارد شوید و ریپوی
+   `qoqnus-website` را Import کنید (نیازی به نصب چیزی روی سیستم نیست).
+5. در تنظیمات Environment Variables پروژه، همین متغیرها را ست کنید:
+   `DATABASE_URL`, `DATABASE_AUTH_TOKEN` (مقادیر Turso)، و
+   `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET` (طبق بخش نصب
+   بالا).
+6. Deploy بزنید. برای هر Pull Request هم یک لینک Preview جدا خودکار
+   ساخته می‌شود.
 
 ## نکته امنیتی
 
