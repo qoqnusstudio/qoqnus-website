@@ -10,8 +10,11 @@ export const navLinks: NavLink[] = [
   { href: "/about", label: "درباره ما" },
   { href: "/projects", label: "پروژه‌ها" },
   { href: "/philosophy", label: "فلسفه ما" },
-  { href: "/founder", label: "بنیان‌گذار" },
   { href: "/articles", label: "مقالات" },
   { href: "/videos", label: "ویدیوها" },
   { href: "/contact", label: "تماس" },
 ];
+
+// Founder isn't in the primary nav — it's reached from a link inside
+// the About page instead (per product decision).
+export const founderLink: NavLink = { href: "/founder", label: "بنیان‌گذار" };

@@ -1,21 +1,23 @@
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Mission from "@/components/sections/Mission";
+import Services from "@/components/sections/Services";
+import ProjectsPreview from "@/components/sections/ProjectsPreview";
+import PhilosophyTeaser from "@/components/sections/PhilosophyTeaser";
+import FounderTeaser from "@/components/sections/FounderTeaser";
+import ContactCta from "@/components/sections/ContactCta";
+
 export default function HomePage() {
   return (
-    <section className="flex min-h-[calc(100vh-73px)] flex-col items-center justify-center px-6 text-center">
-      <p className="text-sm tracking-[0.3em] text-gold-500">
-        QOQNUS MEDIA STUDIO
-      </p>
-      <h1 className="mt-6 font-serif text-6xl tracking-[0.15em] text-ivory sm:text-8xl">
-        ققنوس
-      </h1>
-      <p className="mt-4 text-lg text-gold-500">باززایی نگاه</p>
-      <p className="mt-2 text-xs uppercase tracking-[0.3em] text-ivory/50">
-        Cinema for Civilization
-      </p>
-      <p className="mt-10 max-w-lg text-sm leading-8 text-ivory/60">
-        اسکلت اولیه‌ی سایت آماده است. بخش‌های هیرو، درباره، ماموریت، حوزه
-        فعالیت، پروژه‌ها، فلسفه، بنیان‌گذار و تماس در فاز بعدی با طراحی نهایی
-        و انیمیشن‌های اسکرول تکمیل می‌شوند.
-      </p>
-    </section>
+    <>
+      <Hero />
+      <About />
+      <Mission />
+      <Services />
+      <ProjectsPreview />
+      <PhilosophyTeaser />
+      <FounderTeaser />
+      <ContactCta />
+    </>
   );
 }

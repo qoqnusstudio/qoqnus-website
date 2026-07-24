@@ -13,7 +13,7 @@ export default function Footer() {
     <footer className="border-t border-gold-500/10 bg-black/40 px-6 py-12">
       <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-3">
         <div>
-          <h2 className="font-serif text-lg text-gold-500">استودیو ققنوس</h2>
+          <h2 className="text-lg text-gold-500">استودیو ققنوس</h2>
           <p className="mt-3 text-sm leading-8 text-ivory/70">
             پلتفرمی برای پیوند اندیشه، رسانه و تصویر در افق تمدن اسلامی.
           </p>

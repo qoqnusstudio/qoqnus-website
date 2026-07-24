@@ -2,7 +2,10 @@ export type VideoPlatform = "YOUTUBE" | "APARAT";
 
 // Turns a stored YouTube/Aparat URL into a clean, privacy-friendly,
 // minimal-branding embed URL for the front-end player.
-export function getEmbedUrl(platform: VideoPlatform, url: string): string | null {
+export function getEmbedUrl(
+  platform: VideoPlatform,
+  url: string,
+): string | null {
   try {
     if (platform === "YOUTUBE") {
       const id = extractYouTubeId(url);
@@ -42,6 +45,8 @@ function extractYouTubeId(url: string): string | null {
 }
 
 function extractAparatId(url: string): string | null {
-  const match = url.match(/aparat\.com\/(?:v\/|video\/video\/videohash\/)?([\w-]+)/);
+  const match = url.match(
+    /aparat\.com\/(?:v\/|video\/video\/videohash\/)?([\w-]+)/,
+  );
   return match ? match[1] : null;
 }

@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import PagePlaceholder from "@/components/ui/PagePlaceholder";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 import { getEmbedUrl } from "@/lib/video";
+
+export const metadata: Metadata = {
+  title: "ویدیوها | استودیو ققنوس",
+};
 
 export default async function VideosPage() {
   const videos = await prisma.video.findMany({
@@ -13,39 +20,43 @@ export default async function VideosPage() {
       <PagePlaceholder
         eyebrow="ویدیوها"
         title="ویدیوهای ققنوس"
-        description="ویدیوهای منتشر شده از یوتیوب و آپارات، مدیریت‌شده از پنل ادمین، در فاز بعدی این‌جا نمایش داده می‌شوند."
+        description="ویدیوهای منتشرشده از یوتیوب و آپارات این‌جا نمایش داده می‌شوند."
       />
     );
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-24">
-      <h1 className="mb-10 text-center font-serif text-4xl text-ivory">
-        ویدیوها
-      </h1>
-      <ul className="grid gap-8 sm:grid-cols-2">
-        {videos.map((video) => {
-          const embedUrl = getEmbedUrl(video.platform, video.url);
-          return (
-            <li key={video.id}>
-              <h2 className="mb-3 font-serif text-lg text-gold-500">
-                {video.title}
-              </h2>
-              {embedUrl && (
-                <div className="aspect-video overflow-hidden rounded-lg border border-gold-500/10">
-                  <iframe
-                    src={embedUrl}
-                    title={video.title}
-                    className="h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+    <section className="px-6 py-28">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading eyebrow="ویدیوها" title="ویدیوهای ققنوس" />
+
+        <div className="mt-16 grid gap-10 sm:grid-cols-2">
+          {videos.map((video, i) => {
+            const embedUrl = getEmbedUrl(video.platform, video.url);
+            return (
+              <Reveal key={video.id} delay={i * 0.1}>
+                <h2 className="mb-3 text-lg text-gold-500">{video.title}</h2>
+                {video.description && (
+                  <p className="mb-3 text-sm leading-6 text-ivory/60">
+                    {video.description}
+                  </p>
+                )}
+                {embedUrl && (
+                  <div className="aspect-video overflow-hidden rounded-lg border border-gold-500/10">
+                    <iframe
+                      src={embedUrl}
+                      title={video.title}
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }

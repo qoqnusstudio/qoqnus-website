@@ -8,4 +8,10 @@ if (!password) {
 }
 
 const hash = bcrypt.hashSync(password, 12);
-console.log(hash);
+
+// bcrypt hashes contain `$`, which Next.js's .env loader treats as
+// variable-expansion syntax (dotenv-expand) and silently corrupts.
+// Base64-encoding it keeps it .env-safe; auth.ts decodes it back.
+const encoded = Buffer.from(hash, "utf8").toString("base64");
+
+console.log(encoded);
