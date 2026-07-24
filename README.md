@@ -138,7 +138,7 @@ Marcellus یا Playfair Display) تغییر داد.
 اضافه‌کردن فایل با همین نام، در بخش بنیان‌گذار صفحه اصلی و صفحه `/founder`
 به‌طور خودکار جایگزین می‌شود.
 
-## دیپلوی روی Vercel (با دیتابیس Turso)
+## دیپلوی روی Vercel یا Netlify (با دیتابیس Turso)
 
 فایل SQLite محلی روی هاستینگ سرورلس مثل Vercel پایدار نیست، پس برای
 پروداکشن به یک دیتابیس libSQL ابری (Turso) وصل می‌شویم — کد از قبل برای
@@ -155,8 +155,11 @@ Marcellus یا Playfair Display) تغییر داد.
    ```bash
    DATABASE_URL="libsql://..." DATABASE_AUTH_TOKEN="..." npm run db:turso:migrate
    ```
-4. در [vercel.com/new](https://vercel.com/new) با گیت‌هاب وارد شوید و ریپوی
-   `qoqnus-website` را Import کنید (نیازی به نصب چیزی روی سیستم نیست).
+4. در [vercel.com/new](https://vercel.com/new) یا
+   [app.netlify.com/start](https://app.netlify.com/start) با گیت‌هاب وارد
+   شوید و ریپوی `qoqnus-website` را Import کنید (نیازی به نصب چیزی روی
+   سیستم نیست؛ هر دو پلتفرم Next.js App Router و Server Actions را کامل
+   پشتیبانی می‌کنند).
 5. در تنظیمات Environment Variables پروژه، همین متغیرها را ست کنید:
    `DATABASE_URL`, `DATABASE_AUTH_TOKEN` (مقادیر Turso)، و
    `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET` (طبق بخش نصب
