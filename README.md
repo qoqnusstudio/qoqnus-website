@@ -149,21 +149,23 @@ Marcellus یا Playfair Display) تغییر داد.
    بسازید و از داشبورد وب یک دیتابیس جدید ایجاد کنید.
 2. از همان داشبورد، **Database URL** (به‌شکل `libsql://...turso.io`) و یک
    **Auth Token** بگیرید.
-3. مایگریشن‌ها را روی همان دیتابیس Turso اجرا کنید (موتور migrate خود
-   Prisma فقط فایل SQLite محلی را می‌فهمد، نه پروتکل ریموت Turso را — به
-   همین دلیل یک اسکریپت کوچک این کار را با کلاینت JS انجام می‌دهد):
-   ```bash
-   DATABASE_URL="libsql://..." DATABASE_AUTH_TOKEN="..." npm run db:turso:migrate
-   ```
-4. در [vercel.com/new](https://vercel.com/new) یا
+3. در [vercel.com/new](https://vercel.com/new) یا
    [app.netlify.com/start](https://app.netlify.com/start) با گیت‌هاب وارد
    شوید و ریپوی `qoqnus-website` را Import کنید (نیازی به نصب چیزی روی
    سیستم نیست؛ هر دو پلتفرم Next.js App Router و Server Actions را کامل
    پشتیبانی می‌کنند).
-5. در تنظیمات Environment Variables پروژه، همین متغیرها را ست کنید:
+4. در تنظیمات Environment Variables پروژه، همین متغیرها را ست کنید:
    `DATABASE_URL`, `DATABASE_AUTH_TOKEN` (مقادیر Turso)، و
    `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET` (طبق بخش نصب
    بالا).
+5. **Build command** پروژه را به این تغییر دهید تا جدول‌ها روی Turso
+   خودکار ساخته شوند (موتور migrate خود Prisma فقط فایل SQLite محلی را
+   می‌فهمد، نه پروتکل ریموت Turso را — به همین دلیل یک اسکریپت کوچک این
+   کار را با کلاینت JS انجام می‌دهد؛ اجرای دوباره‌اش در دیپلوی‌های بعدی
+   بی‌خطر است، چون قبلاً اعمال‌شده‌ها را نادیده می‌گیرد):
+   ```
+   npm run db:turso:migrate && npm run build
+   ```
 6. Deploy بزنید. برای هر Pull Request هم یک لینک Preview جدا خودکار
    ساخته می‌شود.
 
