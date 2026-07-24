@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.env.local)",
+      "Read(.env.development)",
+      "Read(.env.development.local)",
+      "Read(.env.production)",
+      "Read(.env.production.local)",
+      "Read(.env.test)",
+      "Read(.env.test.local)",
+      "Read(**/.env)",
+      "Read(**/.env.local)",
+      "Read(**/.env.development)",
+      "Read(**/.env.development.local)",
+      "Read(**/.env.production)",
+      "Read(**/.env.production.local)",
+      "Read(**/.env.test)",
+      "Read(**/.env.test.local)"
+    ],
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install *)",
+      "Bash(npm run dev)",
+      "Bash(npm run dev *)",
+      "Bash(npx prisma)",
+      "Bash(npx prisma *)"
+    ]
+  }
+}
