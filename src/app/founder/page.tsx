@@ -1,6 +1,16 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import Reveal from "@/components/ui/Reveal";
 import FounderPortrait from "@/components/ui/FounderPortrait";
+
+const STUDY_PHOTO_PATH = "/images/founder-study.jpg";
+
+function hasStudyPhoto(): boolean {
+  return fs.existsSync(
+    path.join(process.cwd(), "public", STUDY_PHOTO_PATH),
+  );
+}
 
 export const metadata: Metadata = {
   title: "بنیان‌گذار | استودیو ققنوس",
@@ -57,6 +67,20 @@ export default function FounderPage() {
             </div>
           </div>
         </Reveal>
+
+        {hasStudyPhoto() && (
+          <Reveal className="mt-16 flex justify-center" delay={0.15}>
+            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-gold-500/20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={STUDY_PHOTO_PATH}
+                alt="حیدر صادقیان در حال مطالعه"
+                className="h-full w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_22px_rgba(61,12,10,0.85)]" />
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );
