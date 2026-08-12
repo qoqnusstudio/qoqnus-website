@@ -69,6 +69,7 @@ model Section {
   slug       String   @unique
   content    String
   coverImage String?
+  embedUrl   String?
   targetPage String
   position   Int      @default(0)
   status     String   @default("draft")

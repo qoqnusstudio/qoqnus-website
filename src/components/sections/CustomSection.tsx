@@ -1,12 +1,14 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Reveal from "@/components/ui/Reveal";
+import { getEmbedUrlFromAnyUrl } from "@/lib/video";
 
 type CustomSectionProps = {
   section: {
     title: string;
     content: string;
     coverImage: string | null;
+    embedUrl: string | null;
   };
   showTitle?: boolean;
 };
@@ -19,6 +21,10 @@ export default function CustomSection({
   section,
   showTitle = true,
 }: CustomSectionProps) {
+  const embedUrl = section.embedUrl
+    ? getEmbedUrlFromAnyUrl(section.embedUrl)
+    : null;
+
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-3xl">
@@ -37,6 +43,17 @@ export default function CustomSection({
             <h2 className="text-center text-3xl text-ivory sm:text-4xl">
               {section.title}
             </h2>
+          )}
+          {embedUrl && (
+            <div className="mt-8 aspect-video overflow-hidden rounded-lg border border-gold-500/10">
+              <iframe
+                src={embedUrl}
+                title={section.title}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
           )}
           <div className="prose prose-invert mx-auto mt-8 max-w-none leading-8 text-ivory/80 prose-headings:text-ivory prose-a:text-gold-500 prose-strong:text-ivory">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
