@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  /* Brand palette — QOQNUS Media Studio (fixed guideline) */
+  --color-maroon-950: #3d0c0a; /* deep background end */
+  --color-maroon-900: #4c0f0c;
+  --color-maroon-800: #650f0c;
+  --color-maroon-700: #8b0000; /* primary maroon */
+  --color-gold-500: #d4af37; /* primary gold */
+  --color-gold-600: #c9a227;
+  --color-gold-100: #f3e6c2;
+  --color-ivory: #f6ede1; /* warm off-white body text on dark bg */
+
+  --background: var(--color-maroon-950);
+  --foreground: var(--color-ivory);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-maroon-950: var(--color-maroon-950);
+  --color-maroon-900: var(--color-maroon-900);
+  --color-maroon-800: var(--color-maroon-800);
+  --color-maroon-700: var(--color-maroon-700);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-100: var(--color-gold-100);
+  --color-ivory: var(--color-ivory);
+  --font-sans: var(--font-vazirmatn);
+  --font-serif: var(--font-heading);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Tahoma, sans-serif;
+}
+
+.particle {
+  animation: particle-float var(--pf-duration) ease-in-out var(--pf-delay)
+    infinite;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
