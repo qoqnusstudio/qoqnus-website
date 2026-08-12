@@ -4,7 +4,6 @@ import {
   PhoneIcon,
   TelegramIcon,
   ChatIcon,
-  GlobeIcon,
   PlayIcon,
 } from "@/components/icons";
 
@@ -30,12 +29,6 @@ const contactMethods = [
     label: "ایتا",
     value: "@Qoqnus_Studio",
     href: "https://eitaa.com/Qoqnus_Studio",
-  },
-  {
-    icon: GlobeIcon,
-    label: "وب‌سایت",
-    value: "qost.ir",
-    href: "https://qost.ir",
   },
   {
     icon: PlayIcon,
