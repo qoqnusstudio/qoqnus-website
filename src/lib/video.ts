@@ -30,6 +30,19 @@ export function getEmbedUrl(
   return null;
 }
 
+// Same embed logic as getEmbedUrl, but for callers that only have a
+// single free-form URL (no separate platform field) — e.g. Section's
+// optional embedUrl. Detects the platform from the URL itself.
+export function getEmbedUrlFromAnyUrl(url: string): string | null {
+  if (/youtube\.com|youtu\.be/.test(url)) {
+    return getEmbedUrl("YOUTUBE", url);
+  }
+  if (/aparat\.com/.test(url)) {
+    return getEmbedUrl("APARAT", url);
+  }
+  return null;
+}
+
 function extractYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=)([\w-]{11})/,

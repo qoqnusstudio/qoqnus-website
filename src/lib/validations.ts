@@ -66,6 +66,7 @@ export const sectionSchema = z.object({
   slug: slugField,
   content: z.string().trim().min(1, "متن بخش الزامی است"),
   coverImage: z.string().trim().optional(),
+  embedUrl: z.string().trim().url("لینک معتبر وارد کنید").optional(),
   targetPage: z.enum(targetPageValues),
   position: z.coerce.number().int().default(0),
   status: z.enum(["draft", "published"]).default("draft"),

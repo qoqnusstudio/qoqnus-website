@@ -15,6 +15,7 @@ type SectionFormProps = {
     slug: string;
     content: string;
     coverImage: string | null;
+    embedUrl: string | null;
     targetPage: string;
     position: number;
     status: string;
@@ -70,6 +71,19 @@ export default function SectionForm({
         label="تصویر کاور (اختیاری)"
         defaultValue={defaultValues?.coverImage}
       />
+
+      <Field
+        label="لینک پخش زنده / ویدیو (یوتیوب یا آپارات، اختیاری)"
+        htmlFor="embedUrl"
+      >
+        <input
+          id="embedUrl"
+          name="embedUrl"
+          dir="ltr"
+          defaultValue={defaultValues?.embedUrl ?? ""}
+          className={inputClass}
+        />
+      </Field>
 
       <Field label="صفحه هدف" htmlFor="targetPage">
         <select

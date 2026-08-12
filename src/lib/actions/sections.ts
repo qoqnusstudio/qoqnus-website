@@ -33,6 +33,7 @@ function readSectionForm(formData: FormData) {
     slug: formData.get("slug"),
     content: formData.get("content"),
     coverImage: formData.get("coverImage") || undefined,
+    embedUrl: formData.get("embedUrl") || undefined,
     targetPage: formData.get("targetPage"),
     position: formData.get("position") || 0,
     status: formData.get("status"),
