@@ -1,34 +1,34 @@
 "use client";
 
 import { useActionState } from "react";
-import type { ProjectFormState } from "@/lib/actions/projects";
+import type { SectionFormState } from "@/lib/actions/sections";
+import { sectionTargetPages } from "@/lib/validations";
 import ImageUploadField from "@/components/admin/ImageUploadField";
 
-type ProjectFormProps = {
+type SectionFormProps = {
   action: (
-    state: ProjectFormState,
+    state: SectionFormState,
     formData: FormData,
-  ) => Promise<ProjectFormState>;
+  ) => Promise<SectionFormState>;
   defaultValues?: {
     title: string;
     slug: string;
-    description: string;
-    tag: string | null;
+    content: string;
     coverImage: string | null;
-    coverVideo: string | null;
-    order: number;
-    published: boolean;
+    targetPage: string;
+    position: number;
+    status: string;
   };
   submitLabel: string;
 };
 
-const initialState: ProjectFormState = {};
+const initialState: SectionFormState = {};
 
-export default function ProjectForm({
+export default function SectionForm({
   action,
   defaultValues,
   submitLabel,
-}: ProjectFormProps) {
+}: SectionFormProps) {
   const [state, formAction, pending] = useActionState(action, initialState);
 
   return (
@@ -54,61 +54,60 @@ export default function ProjectForm({
         />
       </Field>
 
-      <Field label="توضیح" htmlFor="description">
+      <Field label="متن بخش (Markdown)" htmlFor="content">
         <textarea
-          id="description"
-          name="description"
-          defaultValue={defaultValues?.description}
+          id="content"
+          name="content"
+          defaultValue={defaultValues?.content}
           required
-          rows={4}
-          className={inputClass}
-        />
-      </Field>
-
-      <Field label="برچسب (مثلاً: پوشش رسانه‌ای)" htmlFor="tag">
-        <input
-          id="tag"
-          name="tag"
-          defaultValue={defaultValues?.tag ?? ""}
+          rows={10}
           className={inputClass}
         />
       </Field>
 
       <ImageUploadField
         name="coverImage"
-        label="تصویر کاور"
+        label="تصویر کاور (اختیاری)"
         defaultValue={defaultValues?.coverImage}
       />
 
-      <Field label="ویدیوی کاور (آدرس URL، اختیاری)" htmlFor="coverVideo">
-        <input
-          id="coverVideo"
-          name="coverVideo"
-          dir="ltr"
-          defaultValue={defaultValues?.coverVideo ?? ""}
+      <Field label="صفحه هدف" htmlFor="targetPage">
+        <select
+          id="targetPage"
+          name="targetPage"
+          defaultValue={defaultValues?.targetPage ?? "home"}
           className={inputClass}
-        />
+        >
+          {sectionTargetPages.map((p) => (
+            <option key={p.value} value={p.value}>
+              {p.label}
+            </option>
+          ))}
+        </select>
       </Field>
 
-      <Field label="ترتیب نمایش" htmlFor="order">
+      <Field label="ترتیب (position)" htmlFor="position">
         <input
-          id="order"
-          name="order"
+          id="position"
+          name="position"
           type="number"
           dir="ltr"
-          defaultValue={defaultValues?.order ?? 0}
+          defaultValue={defaultValues?.position ?? 0}
           className={inputClass}
         />
       </Field>
 
-      <label className="flex items-center gap-2 text-sm text-ivory/80">
-        <input
-          type="checkbox"
-          name="published"
-          defaultChecked={defaultValues?.published ?? true}
-        />
-        منتشر شود
-      </label>
+      <Field label="وضعیت" htmlFor="status">
+        <select
+          id="status"
+          name="status"
+          defaultValue={defaultValues?.status ?? "draft"}
+          className={inputClass}
+        >
+          <option value="draft">پیش‌نویس</option>
+          <option value="published">منتشرشده</option>
+        </select>
+      </Field>
 
       {state.error && (
         <p className="text-sm text-red-400" role="alert">

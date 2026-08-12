@@ -8,6 +8,7 @@ const adminLinks = [
   { href: "/admin/articles", label: "مقالات" },
   { href: "/admin/projects", label: "پروژه‌ها" },
   { href: "/admin/videos", label: "ویدیوها" },
+  { href: "/admin/sections", label: "بخش‌های سفارشی" },
 ];
 
 export default async function AdminProtectedLayout({

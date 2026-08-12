@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import type { ArticleFormState } from "@/lib/actions/articles";
+import ImageUploadField from "@/components/admin/ImageUploadField";
 
 type ArticleFormProps = {
   action: (
@@ -72,15 +73,11 @@ export default function ArticleForm({
         />
       </Field>
 
-      <Field label="تصویر کاور (آدرس URL)" htmlFor="coverImage">
-        <input
-          id="coverImage"
-          name="coverImage"
-          dir="ltr"
-          defaultValue={defaultValues?.coverImage ?? ""}
-          className={inputClass}
-        />
-      </Field>
+      <ImageUploadField
+        name="coverImage"
+        label="تصویر کاور"
+        defaultValue={defaultValues?.coverImage}
+      />
 
       <label className="flex items-center gap-2 text-sm text-ivory/80">
         <input

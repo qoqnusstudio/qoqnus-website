@@ -44,6 +44,33 @@ export const videoSchema = z.object({
   published: z.boolean(),
 });
 
+export const sectionTargetPages = [
+  { value: "home", label: "صفحه اصلی" },
+  { value: "about", label: "درباره ما" },
+  { value: "philosophy", label: "فلسفه ما" },
+  { value: "founder", label: "بنیان‌گذار" },
+  { value: "contact", label: "تماس" },
+  { value: "projects", label: "پروژه‌ها" },
+  { value: "articles", label: "مقالات" },
+  { value: "videos", label: "ویدیوها" },
+  { value: "standalone", label: "صفحه مستقل (/اسلاگ)" },
+] as const;
+
+const targetPageValues = sectionTargetPages.map((p) => p.value) as [
+  string,
+  ...string[],
+];
+
+export const sectionSchema = z.object({
+  title: z.string().trim().min(1, "عنوان الزامی است"),
+  slug: slugField,
+  content: z.string().trim().min(1, "متن بخش الزامی است"),
+  coverImage: z.string().trim().optional(),
+  targetPage: z.enum(targetPageValues),
+  position: z.coerce.number().int().default(0),
+  status: z.enum(["draft", "published"]).default("draft"),
+});
+
 export const loginSchema = z.object({
   username: z.string().trim().min(1, "نام کاربری را وارد کنید"),
   password: z.string().min(1, "رمز عبور را وارد کنید"),
