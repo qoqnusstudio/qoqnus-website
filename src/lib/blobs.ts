@@ -1,5 +1,10 @@
 import "server-only";
 import { getStore } from "@netlify/blobs";
+import {
+  MAX_UPLOAD_BYTES,
+  MAX_UPLOAD_MB,
+  ALLOWED_IMAGE_TYPES,
+} from "@/lib/upload-constraints";
 
 const STORE_NAME = "uploads";
 
@@ -17,14 +22,7 @@ function getUploadsStore() {
   return getStore(STORE_NAME);
 }
 
-const MAX_UPLOAD_BYTES = 8 * 1024 * 1024; // 8MB
-const ALLOWED_TYPES = new Set([
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/gif",
-  "image/svg+xml",
-]);
+const ALLOWED_TYPES = new Set<string>(ALLOWED_IMAGE_TYPES);
 
 export class UploadError extends Error {}
 
@@ -33,7 +31,9 @@ export async function saveUploadedImage(file: File): Promise<string> {
     throw new UploadError("فقط تصویر (JPG, PNG, WEBP, GIF, SVG) مجاز است");
   }
   if (file.size > MAX_UPLOAD_BYTES) {
-    throw new UploadError("حجم تصویر باید کمتر از ۸ مگابایت باشد");
+    throw new UploadError(
+      `حجم تصویر باید کمتر از ${MAX_UPLOAD_MB} مگابایت باشد`,
+    );
   }
 
   const key = `${crypto.randomUUID()}-${sanitizeFilename(file.name)}`;

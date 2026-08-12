@@ -2,6 +2,11 @@
 
 import { useRef, useState, useTransition } from "react";
 import { uploadImage } from "@/lib/actions/uploads";
+import {
+  MAX_UPLOAD_BYTES,
+  MAX_UPLOAD_MB,
+  ALLOWED_IMAGE_TYPES,
+} from "@/lib/upload-constraints";
 
 type ImageUploadFieldProps = {
   name: string;
@@ -22,6 +27,12 @@ export default function ImageUploadField({
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.size > MAX_UPLOAD_BYTES) {
+      setError(`حجم تصویر باید کمتر از ${MAX_UPLOAD_MB} مگابایت باشد`);
+      e.target.value = "";
+      return;
+    }
 
     setError(null);
     const formData = new FormData();
@@ -88,7 +99,7 @@ export default function ImageUploadField({
         <input
           ref={fileInputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+          accept={ALLOWED_IMAGE_TYPES.join(",")}
           onChange={handleFileChange}
           className="hidden"
         />
