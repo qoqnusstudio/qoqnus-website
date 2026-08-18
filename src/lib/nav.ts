@@ -12,6 +12,7 @@ export const navLinks: NavLink[] = [
   { href: "/philosophy", label: "فلسفه ما" },
   { href: "/articles", label: "مقالات" },
   { href: "/videos", label: "ویدیوها" },
+  { href: "/forum", label: "انجمن" },
   { href: "/contact", label: "تماس" },
 ];
 

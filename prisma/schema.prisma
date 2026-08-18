@@ -78,3 +78,51 @@ model Section {
 
   @@index([targetPage, status, position])
 }
+
+// Forum member account — deliberately separate from the single
+// env-var-based admin login in auth.ts. Regular members register and
+// sign in with these, while site-admin moderation powers (pin/lock/
+// delete anything) still gate on the existing admin session.
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  banned       Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  topics  ForumTopic[]
+  replies ForumReply[]
+}
+
+model ForumTopic {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  category  String   @default("general")
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  pinned    Boolean  @default(false)
+  locked    Boolean  @default(false)
+  flagged   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  replies ForumReply[]
+
+  @@index([category, pinned, createdAt])
+}
+
+model ForumReply {
+  id        String   @id @default(cuid())
+  content   String
+  authorId  String
+  author    User       @relation(fields: [authorId], references: [id])
+  topicId   String
+  topic     ForumTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  flagged   Boolean    @default(false)
+  createdAt DateTime   @default(now())
+
+  @@index([topicId, createdAt])
+}
