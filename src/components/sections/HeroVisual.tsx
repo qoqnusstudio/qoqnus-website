@@ -9,6 +9,14 @@ const Hero3D = dynamic(() => import("@/components/sections/Hero3D"), {
   loading: () => null,
 });
 
+// Kill switch for the 3D hero, independent of any code change: set
+// NEXT_PUBLIC_HERO_3D_ENABLED="false" in Netlify's environment
+// variables and redeploy to revert every visitor to the original
+// particle animation. Inlined at build time, so it's identical on the
+// server and the client's first render — no hydration risk, and no
+// need to wait for an effect the way capability detection below does.
+const HERO_3D_ENABLED = process.env.NEXT_PUBLIC_HERO_3D_ENABLED !== "false";
+
 function supportsWebGL(): boolean {
   try {
     const canvas = document.createElement("canvas");
@@ -23,9 +31,13 @@ function supportsWebGL(): boolean {
 // otherwise — low-end devices, no WebGL, or prefers-reduced-motion.
 // See the roadmap doc's "3D feasibility" section for the reasoning.
 export default function HeroVisual() {
-  const [mode, setMode] = useState<"pending" | "3d" | "particles">("pending");
+  const [mode, setMode] = useState<"pending" | "3d" | "particles">(
+    HERO_3D_ENABLED ? "pending" : "particles",
+  );
 
   useEffect(() => {
+    if (!HERO_3D_ENABLED) return;
+
     // WebGL/reduced-motion detection needs `window`, so it can only run
     // client-side, after mount — computing it during render (e.g. a
     // useState lazy initializer) would run on the server too, where it's
