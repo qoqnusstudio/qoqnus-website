@@ -38,8 +38,14 @@ body {
 }
 
 .particle {
+  /* backwards: without this, during each particle's animation-delay the
+     browser renders its un-animated base state (fully opaque, sitting at
+     bottom:0) instead of the 0% keyframe (opacity:0) — so on first paint
+     every particle flashes visible in a line along the bottom edge before
+     snapping into the animation. `backwards` applies the 0% keyframe
+     immediately, so particles start invisible and just fade in in place. */
   animation: particle-float var(--pf-duration) ease-in-out var(--pf-delay)
-    infinite;
+    infinite backwards;
 }
 
 @keyframes particle-float {

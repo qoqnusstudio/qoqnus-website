@@ -76,3 +76,35 @@ export const loginSchema = z.object({
   username: z.string().trim().min(1, "نام کاربری را وارد کنید"),
   password: z.string().min(1, "رمز عبور را وارد کنید"),
 });
+
+export const forumCategories = [
+  { value: "general", label: "عمومی" },
+  { value: "meetings", label: "اطلاعیه جلسات" },
+  { value: "discussion", label: "موضوعات مورد بحث" },
+] as const;
+
+const forumCategoryValues = forumCategories.map((c) => c.value) as [
+  string,
+  ...string[],
+];
+
+export const forumRegisterSchema = z.object({
+  name: z.string().trim().min(1, "نام الزامی است"),
+  email: z.string().trim().toLowerCase().email("ایمیل معتبر وارد کنید"),
+  password: z.string().min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد"),
+});
+
+export const forumLoginSchema = z.object({
+  email: z.string().trim().toLowerCase().email("ایمیل معتبر وارد کنید"),
+  password: z.string().min(1, "رمز عبور را وارد کنید"),
+});
+
+export const forumTopicSchema = z.object({
+  title: z.string().trim().min(3, "عنوان باید حداقل ۳ کاراکتر باشد"),
+  content: z.string().trim().min(1, "متن موضوع الزامی است"),
+  category: z.enum(forumCategoryValues).default("general"),
+});
+
+export const forumReplySchema = z.object({
+  content: z.string().trim().min(1, "متن پاسخ الزامی است"),
+});

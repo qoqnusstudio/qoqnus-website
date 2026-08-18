@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import HeroParticles from "@/components/sections/HeroParticles";
+import HeroVisual from "@/components/sections/HeroVisual";
 
 export default function Hero() {
   return (
@@ -14,7 +14,7 @@ export default function Hero() {
             "radial-gradient(60% 60% at 50% 40%, var(--color-maroon-700) 0%, var(--color-maroon-950) 75%)",
         }}
       />
-      <HeroParticles />
+      <HeroVisual />
 
       <motion.div
         className="text-center"
