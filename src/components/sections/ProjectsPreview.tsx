@@ -10,51 +10,61 @@ export default async function ProjectsPreview() {
     take: 3,
   });
 
-  if (projects.length === 0) {
-    return null;
-  }
-
   return (
     <section className="px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="نمونه کارها" title="پروژه‌های ما" />
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <Reveal key={project.id} delay={i * 0.1}>
-              <Link
-                href={`/projects/${project.slug}`}
-                className="group block h-full overflow-hidden rounded-lg border border-gold-500/10 bg-black/20 transition-colors hover:border-gold-500/30"
-              >
-                <div className="flex h-40 items-center justify-center bg-gradient-to-br from-maroon-800 to-maroon-950">
-                  {project.coverImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={project.coverImage}
-                      alt={project.title}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <span className="text-3xl text-gold-500/40">ققنوس</span>
-                  )}
-                </div>
-                <div className="p-6">
-                  {project.tag && (
-                    <span className="rounded-full bg-gold-500/10 px-3 py-1 text-xs text-gold-500">
-                      {project.tag}
-                    </span>
-                  )}
-                  <h3 className="mt-4 text-lg text-ivory group-hover:text-gold-500">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-ivory/60">
-                    {project.description}
-                  </p>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        {projects.length === 0 ? (
+          <Reveal className="mt-16">
+            <div className="glass mx-auto max-w-xl px-8 py-12 text-center">
+              <p className="text-xs tracking-[0.3em] text-gold-500/70">
+                به‌زودی
+              </p>
+              <p className="mt-4 text-sm leading-7 text-ivory/60">
+                نمونه‌کارهای استودیو ققنوس در حال آماده‌سازی است و به‌محض
+                انتشار، همین‌جا نمایش داده می‌شود.
+              </p>
+            </div>
+          </Reveal>
+        ) : (
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project, i) => (
+              <Reveal key={project.id} delay={i * 0.1}>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group glass block h-full overflow-hidden !p-0 transition-colors hover:border-gold-500/35"
+                >
+                  <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-maroon-800 to-maroon-950">
+                    {project.coverImage ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={project.coverImage}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <span className="text-3xl text-gold-500/40">ققنوس</span>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    {project.tag && (
+                      <span className="rounded-full bg-gold-500/10 px-3 py-1 text-xs text-gold-500">
+                        {project.tag}
+                      </span>
+                    )}
+                    <h3 className="mt-4 text-lg text-ivory group-hover:text-gold-500">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-ivory/60">
+                      {project.description}
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        )}
 
         <Reveal className="mt-10 text-center">
           <Link

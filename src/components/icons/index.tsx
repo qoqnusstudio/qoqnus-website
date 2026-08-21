@@ -94,6 +94,37 @@ export function GlobeIcon({ className }: IconProps) {
   );
 }
 
+// Eye — honest image / clarity of gaze
+export function EyeIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+      <circle cx="12" cy="12" r="2.6" />
+    </svg>
+  );
+}
+
+// Chain link — connecting thought and media
+export function LinkIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M9.5 14.5 14.5 9.5" />
+      <path d="M11 6.5 13 4.5a3.2 3.2 0 0 1 4.5 4.5L15.5 11" />
+      <path d="M13 17.5 11 19.5a3.2 3.2 0 0 1-4.5-4.5L8.5 13" />
+    </svg>
+  );
+}
+
+// Compass — civilizational horizon
+export function CompassIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m14.5 9.5-2 5-5 2 2-5Z" />
+    </svg>
+  );
+}
+
 // Play button — Aparat
 export function PlayIcon({ className }: IconProps) {
   return (

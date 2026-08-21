@@ -87,7 +87,7 @@ export default async function FounderPage() {
                   alt="حیدر صادقیان در حال مطالعه"
                   className="h-full w-full object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_22px_rgba(61,12,10,0.85)]" />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_22px_rgba(72,18,29,0.85)]" />
               </div>
             </Reveal>
           )}

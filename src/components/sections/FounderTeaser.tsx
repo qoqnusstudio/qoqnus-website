@@ -9,7 +9,7 @@ export default function FounderTeaser() {
       <div className="mx-auto max-w-4xl">
         <SectionHeading eyebrow="بنیان‌گذار" title="حیدر صادقیان" />
 
-        <Reveal className="mt-14 flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:justify-center">
+        <Reveal className="glass mt-14 flex flex-col items-center gap-8 px-8 py-12 sm:flex-row sm:items-center sm:justify-center">
           <FounderPortrait size={140} />
           <div className="max-w-md text-center sm:text-right">
             <p className="text-sm leading-7 text-ivory/60">

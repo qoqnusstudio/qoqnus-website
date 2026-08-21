@@ -7,8 +7,8 @@ export default function PhilosophyTeaser() {
     <section className="bg-maroon-900/30 px-6 py-28">
       <div className="mx-auto max-w-3xl text-center">
         <SectionHeading eyebrow="اندیشه رسانه" title="فلسفه ما" />
-        <Reveal className="mt-10" delay={0.1}>
-          <p className="text-base leading-8 text-ivory/70">
+        <Reveal className="glass mt-10 px-8 py-12 sm:px-14" delay={0.1}>
+          <p className="font-serif text-lg leading-9 text-ivory/80 sm:text-xl">
             ما به رسانه به‌عنوان ابزار نگاه نمی‌کنیم؛ ما رسانه را{" "}
             <span className="text-gold-500">شرطِ نگاه</span> می‌دانیم. ققنوس یک
             استودیوی رسانه‌ای مستقل است که بر این باور است که رسانه صرفاً وسیله

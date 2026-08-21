@@ -54,7 +54,7 @@ export default async function ProjectsPage() {
               <Reveal key={project.id} delay={i * 0.06}>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="group block h-full overflow-hidden rounded-lg border border-gold-500/10 bg-black/20 transition-colors hover:border-gold-500/30"
+                  className="group glass block h-full overflow-hidden transition-colors hover:border-gold-500/35"
                 >
                   <div className="flex h-40 items-center justify-center bg-gradient-to-br from-maroon-800 to-maroon-950">
                     {project.coverImage ? (

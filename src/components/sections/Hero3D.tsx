@@ -45,11 +45,11 @@ function CameraRig() {
       <mesh position={[0, 0.35, 0]} castShadow>
         <boxGeometry args={[1.5, 0.9, 1.1]} />
         <meshStandardMaterial
-          color="#d4af37"
+          color="#c9a45c"
           metalness={0.85}
           roughness={0.28}
-          emissive="#5c3d0a"
-          emissiveIntensity={0.25}
+          emissive="#48121d"
+          emissiveIntensity={0.3}
         />
       </mesh>
 
@@ -60,18 +60,18 @@ function CameraRig() {
       </mesh>
       <mesh position={[0, 0.35, 1.16]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.24, 0.24, 0.06, 24]} />
-        <meshStandardMaterial color="#3d0c0a" metalness={0.4} roughness={0.5} />
+        <meshStandardMaterial color="#48121d" metalness={0.4} roughness={0.5} />
       </mesh>
 
       {/* top viewfinder hump */}
       <mesh position={[0, 0.92, -0.1]}>
         <boxGeometry args={[0.5, 0.22, 0.5]} />
         <meshStandardMaterial
-          color="#d4af37"
+          color="#c9a45c"
           metalness={0.85}
           roughness={0.28}
-          emissive="#5c3d0a"
-          emissiveIntensity={0.25}
+          emissive="#48121d"
+          emissiveIntensity={0.3}
         />
       </mesh>
 

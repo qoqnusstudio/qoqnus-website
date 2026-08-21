@@ -87,7 +87,7 @@ export default async function ForumPage() {
               <Reveal key={topic.id} delay={Math.min(i * 0.05, 0.4)}>
                 <Link
                   href={`/forum/${topic.slug}`}
-                  className="group block rounded-lg border border-gold-500/10 bg-black/20 p-6 transition-colors hover:border-gold-500/30"
+                  className="group glass block p-6 transition-colors hover:border-gold-500/35"
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     {topic.pinned && (

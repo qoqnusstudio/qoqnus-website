@@ -24,7 +24,7 @@ export default function FounderPortrait({ size = 160 }: { size?: number }) {
             alt="حیدر صادقیان"
             className="h-full w-full object-cover"
           />
-          <div className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_36px_14px_rgba(61,12,10,0.85)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_36px_14px_rgba(72,18,29,0.85)]" />
         </>
       ) : (
         <div className="flex h-full w-full items-center justify-center">

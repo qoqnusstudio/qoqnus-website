@@ -54,7 +54,7 @@ export default async function ArticlesPage() {
               <Reveal key={article.id} delay={i * 0.08}>
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="group block rounded-lg border border-gold-500/10 bg-black/20 p-7 transition-colors hover:border-gold-500/30"
+                  className="group glass block p-7 transition-colors hover:border-gold-500/35"
                 >
                   <h2 className="text-xl text-ivory group-hover:text-gold-500">
                     {article.title}
