@@ -127,7 +127,7 @@ export default async function ForumTopicPage({ params }: Props) {
             return (
               <div
                 key={reply.id}
-                className="rounded-lg border border-gold-500/10 bg-black/20 p-5"
+                className="glass p-5"
               >
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-ivory/50">

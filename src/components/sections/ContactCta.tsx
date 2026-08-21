@@ -4,7 +4,7 @@ import Reveal from "@/components/ui/Reveal";
 export default function ContactCta() {
   return (
     <section className="bg-maroon-900/30 px-6 py-28 text-center">
-      <Reveal className="mx-auto max-w-2xl">
+      <Reveal className="glass mx-auto max-w-2xl px-8 py-14 sm:px-14">
         <p className="text-xs tracking-[0.3em] text-gold-500">شروع همکاری</p>
         <h2 className="mt-4 text-3xl text-ivory sm:text-4xl">
           گفت‌وگو را با ما آغاز کنید

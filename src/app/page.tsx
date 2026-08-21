@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import Hero from "@/components/sections/Hero";
+import Values from "@/components/sections/Values";
 import About from "@/components/sections/About";
+import Roadmap from "@/components/sections/Roadmap";
 import Mission from "@/components/sections/Mission";
 import Services from "@/components/sections/Services";
 import ProjectsPreview from "@/components/sections/ProjectsPreview";
@@ -16,7 +18,9 @@ import { getPublishedSections } from "@/lib/sections";
 // fixed sections later without renumbering.
 const ANCHORS: { position: number; node: React.ReactNode }[] = [
   { position: 0, node: <Hero /> },
+  { position: 5, node: <Values /> },
   { position: 10, node: <About /> },
+  { position: 15, node: <Roadmap /> },
   { position: 20, node: <Mission /> },
   { position: 30, node: <Services /> },
   { position: 40, node: <ProjectsPreview /> },

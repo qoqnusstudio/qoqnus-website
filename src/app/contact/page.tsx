@@ -72,7 +72,7 @@ export default async function ContactPage() {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="flex h-full flex-col items-center gap-3 rounded-lg border border-gold-500/10 bg-black/20 p-8 text-center transition-colors hover:border-gold-500/30"
+                  className="glass flex h-full flex-col items-center gap-3 p-8 text-center transition-colors hover:border-gold-500/35"
                 >
                   <method.icon className="h-8 w-8 text-gold-500" />
                   <h2 className="text-lg text-ivory">{method.label}</h2>

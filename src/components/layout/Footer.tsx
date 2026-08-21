@@ -10,7 +10,7 @@ const contactLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gold-500/10 bg-black/40 px-6 py-12">
+    <footer className="glass-strong border-t border-gold-500/10 px-6 py-12">
       <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <h2 className="text-lg text-gold-500">استودیو ققنوس</h2>

@@ -3,18 +3,32 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroVisual from "@/components/sections/HeroVisual";
+import GeometricWeave from "@/components/ui/GeometricWeave";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-[calc(100vh-73px)] items-center justify-center overflow-hidden px-6">
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-30"
         style={{
           background:
             "radial-gradient(60% 60% at 50% 40%, var(--color-maroon-700) 0%, var(--color-maroon-950) 75%)",
         }}
       />
+      <GeometricWeave className="-z-20 text-gold-500" opacity={0.04} />
       <HeroVisual />
+
+      {/* Cinematic depth layer: darkens the frame edges and adds a
+          faint texture, sitting above the particles/3D visual so it
+          reads as a lens vignette rather than a flat background. */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(8,13,18,0.75) 100%)",
+        }}
+      />
+      <div className="film-grain z-0" />
 
       <motion.div
         className="text-center"

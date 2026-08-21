@@ -52,7 +52,7 @@ export default async function AboutPage() {
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {cards.map((card, i) => (
               <Reveal key={card.title} delay={i * 0.1}>
-                <div className="h-full rounded-lg border border-gold-500/10 bg-black/20 p-8">
+                <div className="glass h-full p-8">
                   <h2 className="text-xl text-gold-500">{card.title}</h2>
                   <p className="mt-4 text-sm leading-7 text-ivory/60">
                     {card.description}
